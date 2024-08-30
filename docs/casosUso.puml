@@ -1,0 +1,16 @@
+@startuml CasosUsos
+actor Admin
+actor Usuario
+
+usecase "Gestionar Clientes" as GClientes
+usecase "Gestionar Proveedores" as GProveedores
+usecase "Gestionar Empresas" as GEmpresas
+usecase "Gestionar Productos" as GProductos
+usecase "Realizar Pedidos" as RPedidos
+
+Admin --> GClientes
+Admin --> GProveedores
+Admin --> GEmpresas
+Admin --> GProductos
+Usuario --> RPedidos
+@enduml

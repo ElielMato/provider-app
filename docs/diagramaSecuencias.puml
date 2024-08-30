@@ -1,0 +1,13 @@
+@startuml DiagramaSecuencias
+actor Usuario
+participant "Frontend" as Frontend
+participant "Backend" as Backend
+participant "Base de Datos" as DB
+
+Usuario -> Frontend : Realiza pedido
+Frontend -> Backend : Enviar datos del pedido
+Backend -> DB : Insertar pedido en la base de datos
+DB --> Backend : Confirmación de inserción
+Backend --> Frontend : Confirmación del pedido
+Frontend --> Usuario : Mostrar confirmación
+@enduml

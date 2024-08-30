@@ -1,0 +1,65 @@
+@startuml DiagramaClases
+class User {
+  -int id
+  -String firstname
+  -String lastname
+  -String email
+  -String password
+  -String phone
+  -String adress
+  -String country
+  -String province
+  -String zip_core
+}
+
+class Provider {
+  -int id
+  -int id_companies
+  -String firstname
+  -String lastname
+  -String email
+  -String password
+  -String phone
+  -String adress
+  -String country
+  -String province
+  -String zip_core
+}
+
+class Companies {
+  -int id
+  -String name
+  -String email
+  -String phone
+  -String adress
+  -String type
+  -String country
+  -String province
+  -String zip_core
+}
+
+class Product {
+  -int id
+  -String name
+  -String description
+  -float price
+  -int stock
+  -int id_provider
+}
+
+class Order {
+  -int id
+  -int id_client
+  -int id_product
+  -int amount
+  -Date order_date
+  -String state
+}
+
+Client "1" --> "*" Order : realiza
+Order "*" --> "1" Product : contiene
+Product "*" --> "1" Provider : suministrado_por
+Provider "1" --> "*" Product : suministra
+Companies "1" --> "*" Client : registra
+Companies "1" --> "*" Provider : registra
+@enduml
