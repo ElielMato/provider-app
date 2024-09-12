@@ -8,7 +8,7 @@ class User {
   -String phone
   -String adress
   -String country
-  -String province
+  -String state
   -String zip_core
 }
 
@@ -22,7 +22,7 @@ class Provider {
   -String phone
   -String adress
   -String country
-  -String province
+  -String state
   -String zip_core
 }
 
@@ -34,7 +34,7 @@ class Companies {
   -String adress
   -String type
   -String country
-  -String province
+  -String state
   -String zip_core
 }
 
