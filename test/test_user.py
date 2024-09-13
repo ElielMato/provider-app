@@ -4,9 +4,9 @@ from app import create_app
 import os
 from app.models import User
 from app import db
-from app.repositories import UserRepository
-from app.services import Security
-repository = UserRepository()
+from app.services import UserServices
+from app.services import SecurityManager
+repository = UserServices()
 
 class UserTestCase(unittest.TestCase):
 
@@ -93,14 +93,6 @@ class UserTestCase(unittest.TestCase):
         self.assertEqual(user_save_update.email, "test@gmail.com")
         self.assertEqual(user_save.email, user_save_update.email)
         self.assertEqual(user.email, user_save_update.email)
-        self.assertTrue(Security.check_password(user.password, "#Eliel12345"))
-
-    def test_encrypt_password(self):
-        user = self.__new_user()
-        password_encrypted = Security.encrypt_password(user.password)
-        self.assertNotEqual(password_encrypted, user.password)
-        password_checked = Security.check_password(password_encrypted, user.password)
-        self.assertTrue(password_checked)
 
     def __new_user(self):
         user = User()

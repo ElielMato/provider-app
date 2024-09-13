@@ -1,5 +1,4 @@
-from asyncio.log import logger
-from dotenv import load_dotenv
+from dotenv import load_dotenv # type: ignore
 from pathlib import Path
 import os
 
