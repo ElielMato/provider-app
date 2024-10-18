@@ -1,5 +1,5 @@
 from typing import List
-from app.models.user import User
+from app.models import User
 from app.repositories import UserRepository
 from app.services import SecurityManager, WerkzeugSecurity
 

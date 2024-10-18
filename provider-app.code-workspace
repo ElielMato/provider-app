@@ -2,6 +2,12 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"path": "../logging"
+		},
+		{
+			"path": "../pays"
 		}
 	],
 	"settings": {

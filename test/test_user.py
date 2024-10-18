@@ -6,7 +6,7 @@ from app.models import User
 from app import db
 from app.services import UserServices
 from app.services import SecurityManager
-repository = UserServices()
+user_service = UserServices()
 
 class UserTestCase(unittest.TestCase):
 
@@ -37,27 +37,27 @@ class UserTestCase(unittest.TestCase):
 
     def test_save(self):
         user = self.__new_user()
-        user_save = repository.save(user)
+        user_save = user_service.save(user)
         self.assertIsNotNone(user_save)
         self.assertIsNotNone(user_save.id)
         self.assertGreater(user_save.id, 0)
 
     def test_delete(self):
         user = self.__new_user()
-        user_save = repository.save(user)
+        user_save = user_service.save(user)
         self.assertIsNotNone(user_save)
         self.assertIsNotNone(user_save.id)
         self.assertGreater(user_save.id, 0)
-        user_delete = repository.delete(user_save)
+        user_delete = user_service.delete(user_save)
         self.assertIsNone(user_delete)
 
     def test_find(self):
         user = self.__new_user()
-        user_save = repository.save(user)
+        user_save = user_service.save(user)
         self.assertIsNotNone(user_save)
         self.assertIsNotNone(user_save.id)
         self.assertGreater(user_save.id, 0)
-        user_find = repository.find(1)
+        user_find = user_service.find(1)
         self.assertIsNotNone(user_find)
         self.assertIsNotNone(user_save.id)
         self.assertGreater(user_save.id, 0)
@@ -67,29 +67,29 @@ class UserTestCase(unittest.TestCase):
         user1 = self.__new_user()
         user1.email = "eliel@gmail.com"
         user1.phone = "138741774"
-        user_save = repository.save(user)
-        repository.save(user1)
+        user_save = user_service.save(user)
+        user_service.save(user1)
         self.assertIsNotNone(user_save)
         self.assertIsNotNone(user_save.id)
         self.assertGreater(user_save.id, 0)
-        users = repository.find_all()
+        users = user_service.find_all()
         self.assertIsNotNone(users)
         self.assertGreater(len(users), 1)
         
     def test_find_by(self):
         user = self.__new_user()
-        user_save = repository.save(user)
+        user_save = user_service.save(user)
         self.assertIsNotNone(user_save)
         self.assertIsNotNone(user_save.id)
         self.assertGreater(user_save.id, 0)
-        user_find = repository.find_by(email = "elielmato360@gmail.com")
+        user_find = user_service.find_by(email = "elielmato360@gmail.com")
         self.assertIsNotNone(user_find)
 
     def test_update(self):
         user = self.__new_user()
-        user_save = repository.save(user)
+        user_save = user_service.save(user)
         user_save.email = "test@gmail.com"
-        user_save_update = repository.save(user)
+        user_save_update = user_service.save(user)
         self.assertEqual(user_save_update.email, "test@gmail.com")
         self.assertEqual(user_save.email, user_save_update.email)
         self.assertEqual(user.email, user_save_update.email)
