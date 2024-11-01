@@ -6,3 +6,5 @@ class Route():
         app.register_blueprint(user_bp, url_prefix='/api/v1')
         from app.controllers import home_bp
         app.register_blueprint(home_bp, url_prefix='/api/v1')
+        from app.controllers import product_bp
+        app.register_blueprint(product_bp, url_prefix='/api/v1')

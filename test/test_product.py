@@ -1,10 +1,8 @@
 import unittest
-from flask import current_app
 from app import create_app
 import os
 from app import db
 from app.models import Product
-from app.repositories import ProductRepository
 from app.services import ProductService
 service = ProductService()
 
@@ -100,7 +98,10 @@ class ProductTestCase(unittest.TestCase):
     def __new_product(self):
         product = Product()
         product.name = "Producto"
+        product.id_provider = '4'
         product.description = "Un Producto"
         product.stock = 300
         product.price = 20
+        product.category = "Categoria"
+        product.brand = "Marca"
         return product

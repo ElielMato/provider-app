@@ -22,3 +22,6 @@ class ProductRepository(CreateAbstractRepository, ReadAbstractRepository, Delete
     
     def find_by(self, **kwargs) -> List['Product']:
         return Product.query.filter_by(**kwargs).all()
+    
+    def find_by_user_id(self, user_id: int):
+        return Product.query.filter_by(id_provider=user_id).all()

@@ -1,5 +1,6 @@
 import logging
 from flask import Blueprint, jsonify, request
+from marshmallow import ValidationError
 from app.mapping import UserMap
 from app.services import UserServices
 from app.mapping import MessageMap
@@ -31,13 +32,33 @@ def post():
     return message_map.dump(message_finish), 201
 
 
-@user_bp.route('/users', methods=['PUT'])
-def put():
-    pass
+@user_bp.route('/users/<int:id>', methods=['PUT'])
+def update(id: int):
+    user = user_service.find(id)
+    if not user:
+        message_map, message_finish = message_create({}, f'Usuario con ID {id} no encontrado')
+        return message_map.dump(message_finish), 404
 
-@user_bp.route('/users', methods=['DELETE'])
-def delete():
-    pass
+    updated_data = request.json
+    
+    for key, value in updated_data.items():
+        setattr(user, key, value)
+    
+    updated_user = user_service.save(user)
+    
+    message_map, message_finish = message_create(user_map.dump(updated_user), f'Usuario con ID {id} Actualizado')
+    return message_map.dump(message_finish), 200
+
+@user_bp.route('/users/<int:id>', methods=['DELETE'])
+def delete(id: int):
+    user = user_service.find(id)
+    if user:
+        user_service.delete(user)
+        message_map, message_finish = message_create([], f'Usuario con ID {id} Eliminado')
+        return message_map.dump(message_finish), 200
+    else:
+        message_map, message_finish = message_create([], f'Usuario con ID {id} no encontrado')
+        return message_map.dump(message_finish), 404
 
 def message_create(data, message):
     message_map = MessageMap()
