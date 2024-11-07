@@ -1,6 +1,6 @@
 .env
 ./evnv
-__pycache__
+__pycache__/
 *.pyc
 *.pyo
 *.pyd
@@ -24,3 +24,6 @@ htmlcov/
 dist/
 build/
 *.egg-info/
+migrations/
+venv/
+docs/
