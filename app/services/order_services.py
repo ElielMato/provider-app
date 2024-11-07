@@ -21,3 +21,6 @@ class OrderService():
     
     def find_by(self, **kwargs) -> List['Order']:
         return order_repository.find_by(**kwargs)
+    
+    def find_by_user_id(self, user_id: int) -> List['Order']:
+        return order_repository.find_by(id_client=user_id)
